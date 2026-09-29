@@ -1,0 +1,49 @@
+qdrant:
+  host: 127.0.0.1
+  port: 6333
+  collection: library
+  batch_size: 64
+  timeout: 60
+embedding:
+  model: BAAI/bge-m3
+  batch_size: 32
+  normalize: true
+  device: auto
+  offline: true
+chunking:
+  target_tokens: 700
+  max_tokens: 1000
+  overlap_tokens: 100
+parsing:
+  ocr: never
+  txt_encoding: utf-8-sig
+  artifacts_path: models/docling
+ingestion:
+  recursive: true
+  supported_extensions: [.epub, .pdf, .txt]
+  state_dir: .library_ingestor
+
+# Consulta local. No cambia la identidad de la ingestión.
+llama:
+  host: 127.0.0.1
+  port: 8088
+  model: local-library
+  context_tokens: 8192
+  max_output_tokens: 768
+  temperature: 0.2
+  timeout: 180
+retrieval:
+  candidate_limit: 24
+  source_limit: 6
+  max_per_book: 2
+  min_score: 0.35
+  embedding_cache_size: 128
+web:
+  host: 127.0.0.1
+  port: 8090
+branding:
+  name: NexoLibro
+  tagline: Tu biblioteca local
+  assistant_name: Asistente
+  welcome_title: Explora tu biblioteca
+  welcome_description: Encuentra respuestas en tus propios documentos, siempre en tu dispositivo.
